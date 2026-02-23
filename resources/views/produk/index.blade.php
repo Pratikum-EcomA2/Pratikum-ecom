@@ -8,7 +8,20 @@
 <body>
 
 <div class="container mt-4">
-    <h3 class="mb-3">Data Produk</h3>
+    
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Data Produk</h3>
+        <a href="/produk/create" class="btn btn-primary">
+            + Tambah Data
+        </a>
+    </div>
+     @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
@@ -30,7 +43,7 @@
                     <img src="{{ asset('storage/' . $produk->gambar) }}" width="80">
                 </td>
                 <td>{{ $produk->deskripsi }}</td>
-                <td>Rp {{ number_format($produk->harga) }}</td>
+                 <td>{{ "Rp " . number_format($produk->harga,2,',','.') }}</td>
                 <td>{{ $produk->stok }}</td>
             </tr>
             @empty
